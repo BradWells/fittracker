@@ -1,11 +1,14 @@
 package globalindustryinc.fittrackr;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 
@@ -31,6 +34,8 @@ public class FittrackrActivity extends FragmentActivity {
         dlDrawer.addNavItem("LiftingGraph",R.drawable.lifting,"LiftingGraph", LiftingGraphFragment.class);
         dlDrawer.addNavItem("CardioGraph",R.drawable.running, "CardioGraph", CardioGraphFragment.class);
         dlDrawer.addNavItem("MeasureGraph",R.drawable.measure, "MeasurementsGraphs", MeasureGraphFragment.class);
+        dlDrawer.addNavItem("Timer", R.drawable.timer, "Timer", TimerFragment.class);
+        dlDrawer.addNavItem("NutritionInfo", R.drawable.apple, "Nutrition", NutritionFragment.class);
         // Select default
         if (savedInstanceState == null) {
             dlDrawer.selectDrawerItem(0);
@@ -79,6 +84,11 @@ public class FittrackrActivity extends FragmentActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggles
         dlDrawer.getDrawerToggle().onConfigurationChanged(newConfig);
+    }
+
+    public void startTimer(View view){
+        Intent intent = new Intent(AlarmClock.ACTION_SET_TIMER);
+        startActivity(intent);
     }
 
 }
